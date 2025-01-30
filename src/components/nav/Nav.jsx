@@ -9,10 +9,12 @@ import './Nav.css';  // Import Nav css file for styling
 function Nav() {
   return (
     <nav className="menu">
-        <ul className="menu-links">
+        <div className="menu-left">
+            {/* Home Page where hero and featured will be */}
+            <Link to='/' className="menu-link">Meal Prep Pro</Link>
+        </div>
+        <ul className="menu-center">
             <li>
-                {/* Home Page where hero and featured will be */}
-                <Link to='/' className="menu-link">Home</Link>
             </li>
             <li>
                 {/* Recipes page where users can explore recipes from external API */}
