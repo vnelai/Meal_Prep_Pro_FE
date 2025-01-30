@@ -1,12 +1,15 @@
-import { useState } from 'react'
-import './App.css'
+// Import modules
+import { useState } from 'react'  // Import react
+import './App.css' // Import app css file for styling
+import Nav from './components/nav/Nav';  // Import Nav component
+
 
 function App() {
   
 
   return (
     <>
-      <h1>Hello World</h1>
+      <Nav/>
     </>
   )
 }

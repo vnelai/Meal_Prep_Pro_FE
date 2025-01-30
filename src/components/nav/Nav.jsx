@@ -9,7 +9,7 @@ import './Nav.css';  // Import Nav css file for styling
 function Nav() {
   return (
     <nav className="menu">
-        <ul>
+        <ul className="menu-links">
             <li>
                 {/* Home Page where hero and featured will be */}
                 <Link to='/' className="menu-link">Home</Link>
