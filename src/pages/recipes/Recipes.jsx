@@ -2,7 +2,7 @@
 import React from 'react'  // Import react
 // Import RecipeSearch component
 import RecipeSearch from '../../components/recipe_search/RecipeSearch'
-import RecipeList from './RecipeList'; // Import RecipeList component
+import RecipeList from '../../components/recipe_list/RecipeList'; // Import RecipeList component
 
 function Recipes() {
   return (
