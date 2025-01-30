@@ -19,7 +19,7 @@ function RecipeSearch() {
         // I will be fetching from backend route so my API_KEY remains hidden
         const res = await fetch(`/api/recipes/search?query=${searchQuery}`);
         const data = await res.json();
-        setRecipeData(data.results);
+        setRecipeData(data);
     };
 
   return (
