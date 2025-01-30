@@ -18,7 +18,7 @@
 /* Styling for container of center menu links */
 .menu-center {
   display: flex; /* Arrange layout */
-  justify-content: center; /* Add space between items */
+  justify-content: flex-end; /* Align items to the right */
   flex-grow: 1; /* Items can grow to take up available space */
   list-style-type: none; /* Remove bullet points */
 }
