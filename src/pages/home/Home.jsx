@@ -1,6 +1,6 @@
 // Import Modules
 import React from "react";  // Import React
-import Hero from './components/hero/Hero';  // Import Hero component
+import Hero from '../../components/hero/Hero';  // Import Hero component
 
 
 // Home page function

@@ -6,6 +6,7 @@ import './Nav.css';  // Import Nav css file for styling
 
 // Nav component function
 function Nav() {
+    console.log('Nav rendered');
   return (
     <nav className='menu'>
         <div className='menu-left'>
