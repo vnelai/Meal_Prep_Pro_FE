@@ -1,3 +1,4 @@
+/* Menu container styling */
 .menu {
   display: flex; /* Arrange layout */
   justify-content: space-between; /* Add space between items */
@@ -6,6 +7,7 @@
   padding: 10px 20px; /* Adds space around items */
 }
 
+/* Menu-left Home button styling */
 .menu-left .menu-link {
   font-size: 24px; /* Sets font size */
   font-weight: bold; /* Make text bold */
@@ -13,6 +15,7 @@
   text-decoration: none; /* Removes underline */
 }
 
+/* Styling for container of center menu links */
 .menu-center {
   display: flex; /* Arrange layout */
   justify-content: center; /* Add space between items */
@@ -20,6 +23,7 @@
   list-style-type: none; /* Remove bullet points */
 }
 
+/* Styling for center menu links */
 .menu-center .menu-link {
   color: #e9c46a; /* Sets color of text */
   text-decoration: none; /* Removes underline from link */
@@ -27,6 +31,7 @@
   margin: 0 15px; /* Add space around container */
 }
 
+/* Styling when hovering over menu links */
 .menu-link:hover {
   text-decoration: underline; /* Adds underline when hovered */
 }

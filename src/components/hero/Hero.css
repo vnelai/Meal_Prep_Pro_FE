@@ -1,0 +1,44 @@
+/* Styling for Hero section */
+.hero-section {
+  /* Setting image as a background image */
+  background-image: url("/images/hero_img.jpg");
+  background-size: cover; /* Image covering entire container */
+  background-position: center; /* Center image */
+  height: 80vh; /* Set image height */
+  display: flex; /* Set layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center; /* Center text */
+  color: #264653; /* font color */
+  padding: 20px; /* Space around */
+}
+
+/* Hero text styling */
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+
+/* CTA buttons styling */
+.cta-btns .cta-btn {
+    background-color: #E9C46A; /* Background color */
+    color: #264653;  /* Text color */
+    padding: 15px 30px; /* Space around */
+    font-size: 1.2rem; /* Font size */
+    border-radius: 5px; /* Rounding corners */
+    text-decoration: none; /* No underline */
+    margin: 10px; /* Space around container */
+    transition: background-color 0.3s ease; /* Transition when hovering */
+  }
+  
+/* Styling when hovering over CTA buttons */
+  .cta-btns .cta-btn:hover {
+    background-color: #264653; /* Background color */
+    color: #E9C46A; /* Text color */
+  }
