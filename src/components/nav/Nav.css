@@ -1,0 +1,22 @@
+.menu {
+    background-color: #264653;  /* Sets background color */
+    padding: 10px 0; /* Adds space top and bottom */
+  }
+  
+  .menu-links {
+    display: flex; /* Arrange layout */
+    justify-content: space-between; display: flex; /* Add space between items */
+    list-style-type: none;   /* Remove bullet points */
+    width: 100%; /* Take full width of container */
+    padding: 0 30px; /* Add space on the left and right of the link */
+  }
+  
+  .menu-link {
+    color: #E9C46A;  /* Sets color of text */
+    text-decoration: none; /* Removes underline from link */
+    font-size: 18px;  /* Sets font size */
+  }
+  
+  .menu-link:hover {
+    text-decoration: underline; /* Adds underline when hovered */
+  }
