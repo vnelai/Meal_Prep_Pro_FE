@@ -5,7 +5,7 @@ import MealPlanner from '../../components/meal_planner/MealPlanner';
 
 
 // MealPlanner page function
-function MealPlanner() {
+function MealPlannerPage() {
   return (
     <div>
         <h2>Meal Planner</h2>
@@ -15,4 +15,4 @@ function MealPlanner() {
 }
 
 // Export MealPlanner page
-export default MealPlanner
+export default MealPlannerPage;
