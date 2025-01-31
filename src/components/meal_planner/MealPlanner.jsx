@@ -27,11 +27,28 @@ function MealPlanner({ favorites }) {
   };
 
   // Handle submit button to save meal plan selection
-  const handleSubmit = (event) => {
-    //Prevent page reload, which is default for form submission 
+  const handleSubmit = async (event) => {
+    // Prevent page reload, which is default for form submission 
     event.preventDefault();
-    //Need to add connection to backend
-  }
+    
+    // Send saved meal planner data to backend
+    try {
+        // Send data to server with POST method
+        const res = await fetch('/api/meal-planner', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(meals),
+        });
+
+        if (res.ok) {
+            alert('Meal plan saved to backend');
+        } else {
+            alert('Failed to save meal plan to backend');
+        }
+    } catch (error) {
+        console.error('Failed to save meal plan:', error);
+    }
+  };
 
   // Staging elements
   return (
