@@ -2,7 +2,8 @@
 import React from 'react';  // Import React
 // Import FavoriteList component
 import FavoriteList from '../../components/favorite_list/FavoriteList';
-
+// Import FavoriteRecipe component
+import FavoriteRecipe from '../../components/favorite_recipe/FavoriteRecipe';
 
 // Favorites page function
 function Favorites() {
@@ -10,6 +11,7 @@ function Favorites() {
     <div>
         <h1>Favorites Recipes</h1>
         <FavoriteList/>
+        <FavoriteRecipe/>
     </div>
   );
 }
