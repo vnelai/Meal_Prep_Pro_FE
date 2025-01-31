@@ -26,11 +26,18 @@ function MealPlanner({ favorites }) {
     }));
   };
 
+  // Handle submit button to save meal plan selection
+  const handleSubmit = (event) => {
+    //Prevent page reload, which is default for form submission 
+    event.preventDefault();
+    //Need to add connection to backend
+  }
+
   // Staging elements
   return (
     <div>
       <h2>MealPlanner</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         {/* Extract all keys from meals and loop through each day */}
         {Object.keys(meals).map((day) => (
           //Create a div for each day with key day
