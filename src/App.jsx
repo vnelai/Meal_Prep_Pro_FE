@@ -6,6 +6,7 @@ import Nav from './components/nav/Nav';  // Import Nav component
 import Home from './pages/home/Home';  // Import Home page
 import Recipes from './pages/recipes/Recipes';  // Import Recipes page
 import Favorites from './pages/favorites/Favorites';  // Import Favorites page
+import MealPlanner from './pages/meal_planner/MealPlanner'; // Import MealPlaner page
 
 // App.jsx function 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/recipes' element={<Recipes/>}/>
         {/* Add Favorites page route */}
         <Route path='/favorites' element={<Favorites/>}/>
+        <Route path='/meal-planner' element={<MealPlanner/>}/>
       </Routes>
     </>
   );
