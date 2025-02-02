@@ -73,7 +73,7 @@ button {
   border-radius: 5px; /* Round corners */
   cursor: pointer; /* Pointer */
   font-size: 1.2rem; /* Font size */
-  width: 100%; /* width size */
+  width: 10%; /* width size */
   margin-top: 20px; /* Space top */
 }
 

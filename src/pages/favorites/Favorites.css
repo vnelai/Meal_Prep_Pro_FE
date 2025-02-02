@@ -1,0 +1,11 @@
+/* Styles for header */
+.header-name {
+    background-color: #212f3c; /* Background color */
+    padding: 10px; /* Add space inside container  */
+    font-size: 24px; /* Font size */
+    font-weight: bold; /* Font bold */
+    padding: 15px; /* Space inside container */
+    color: #e9c46a; /* Background color */
+    margin-top: 0%;
+    margin-bottom: 0%;
+}

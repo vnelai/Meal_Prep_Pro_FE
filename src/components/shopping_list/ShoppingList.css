@@ -25,7 +25,7 @@
 }
 
 .item-name {
-    font-size: 25px; /* Font size */
+    font-size: 24px; /* Font size */
     font-weight: bold; /* Font bold */
     padding: 10px; /* Space inside container */
     color: #e9c46a; /* Background color */
@@ -36,10 +36,18 @@
     background: #2A9D8F; /* Button color */
     color: white; /* Text color */
     border: none; /* Remove border */
-    padding: 10px 20px; /* Add spacing inside container */
+    padding: 8px 30px; /* Add spacing inside container */
     margin-left: 10px; /* Space between buttons */
     border-radius: 5px; /* Round button corners */
     cursor: pointer; /* Cursor pointer */
+    font-size: 14px; /* Adjust font size to fit better */
+    display: inline-flex; /* Flexbox for centering items */
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+    height: 30px; /* Set fixed height */
+    width: auto; /* Allow button width to adjust */
+    min-width: 100px; /* Minimum width to prevent shrinking */
+    text-align: center; /* Center text */
 }
 
 .shopping-list-div button:hover {

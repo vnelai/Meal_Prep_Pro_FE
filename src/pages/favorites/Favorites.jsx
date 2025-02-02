@@ -2,16 +2,17 @@
 import React from 'react';  // Import React
 // Import FavoriteList component
 import FavoriteList from '../../components/favorite_list/FavoriteList';
-// Import FavoriteRecipe component
-import FavoriteRecipe from '../../components/favorite_recipe/FavoriteRecipe';
+import './Favorites.css'   // Import styling sheet
+// // Import FavoriteRecipe component
+// import FavoriteRecipe from '../../components/favorite_recipe/FavoriteRecipe';
 
 // Favorites page function
 function Favorites() {
   return (
     <div>
-        <h1>Favorites Recipes</h1>
+        <h1 className='header-name'>Favorite Recipes</h1>
         <FavoriteList/>
-        <FavoriteRecipe/>
+        {/* <FavoriteRecipe/> */}
     </div>
   );
 }
