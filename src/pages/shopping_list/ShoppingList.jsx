@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 // Import ShoppingList component
 import ShoppingList from "../../components/shopping_list/ShoppingList";
+import './ShoppingList.css'  // Import css stylesheet
 
 
 // Shopping List page function
@@ -43,7 +44,7 @@ function ShoppingListPage() {
 
   return (
     <div>
-        <h2>Shopping List</h2>
+        <h2 className="header-name">Shopping List</h2>
         {/* Loop through each grocery item in groceryItems array */}
         {groceryItems.map((groceryItem) => (
             // For each grocery item we will return a shoppingList component

@@ -1,6 +1,9 @@
 //Import Modules
 import React, { useState } from 'react'; // Import React and useState
+import './ShoppingList.css'  // Import stylesheet
 
+
+// ShoppingList component function
 function ShoppingList({groceryItem, updateGroceryItem, deleteGroceryItem}) {
     // Track and set if the item is being edited, by toggling between editing and view mode
     const [isEditingMode, setIsEditingMode] = useState(false);
@@ -25,7 +28,7 @@ function ShoppingList({groceryItem, updateGroceryItem, deleteGroceryItem}) {
 
   // Staging elements  
   return (
-    <div>
+    <div className='shopping-list-div'>
         {/* If editing mode is on we will show an input field and a save button */}
         {isEditingMode ? (
             <div>
@@ -39,9 +42,11 @@ function ShoppingList({groceryItem, updateGroceryItem, deleteGroceryItem}) {
         ) : (
             // If editing mode is off we will show the item name with the Edit and Delete buttons
             <div>
-                {groceryItem.name}
-                <button onClick={handleEditing}>Edit</button>
-                <button onClick={handleDeleting}>Delete</button>
+                <span className='item-name'>{groceryItem.name}</span> 
+                <div className='Shopping-list-btns-view-mode'>
+                    <button onClick={handleEditing}>Edit</button>
+                    <button onClick={handleDeleting}>Delete</button>
+                </div>
             </div>
         )}
         

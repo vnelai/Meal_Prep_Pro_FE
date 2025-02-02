@@ -1,6 +1,7 @@
 // Import modules
 // Import react, useState, useEffect
 import React, { useState, useEffect } from 'react'  
+import './FavoriteList.css'  // Import css stylesheet
 
 // FavoriteList function
 function FavoriteList() {
@@ -36,9 +37,9 @@ function FavoriteList() {
             const res= await fetch('/api/favorites', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: newFavRecipe }),
+                body: JSON.stringify({ name: newFavRecipe.trim() }),
             });
-            fetchFavorites(); // Refresh list
+            awaitfetchFavorites(); // Refresh list
             setNewFavRecipe(""); //Reset the state
         } catch (error) {
             console.error("Failed to add favorite:", error);  
@@ -51,8 +52,8 @@ function FavoriteList() {
             // Second argument of fetch request is optional object which specifies details of request
             const res = await fetch(`/api/favorites/${id}`, {
                 method: "PUT",
-                headers: { "Content-Type" : "Application/json"}, //Tell server we are sending JSON data
-                body: JSON.stringify({ name: editName}),  // Convert object to JSON string for sending data to server
+                headers: { "Content-Type" : "application/json"}, //Tell server we are sending JSON data
+                body: JSON.stringify({ name: editName.trim()}),  // Convert object to JSON string for sending data to server
             });
             if (res.ok) fetchFavorites();  // Refresh list
             setEditId("");  // Reset id
@@ -75,14 +76,14 @@ function FavoriteList() {
     };
 
   return (
-    <div>
+    <div className='favorite-list-div'>
         <h2>Favorites</h2>
         {/* Add New Favorite */}
         <input 
-        type="text"
-        value={newFavRecipe}
-        onChange={(event) => setNewFavRecipe(event.target.value)}
-        placeholder='Add a new favorite recipe...'
+            type="text"
+            value={newFavRecipe}
+            onChange={(event) => setNewFavRecipe(event.target.value)}
+            placeholder='Add a new favorite recipe...'
         />
         {/* Activate addFav function when clicking on button */}
         <button onClick={addFav}>Add</button> 

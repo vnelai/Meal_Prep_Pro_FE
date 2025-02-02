@@ -26,6 +26,7 @@
 /* Styling for center menu links */
 .menu-center .menu-link {
   color: #e9c46a; /* Sets color of text */
+  font-weight: bold;
   text-decoration: none; /* Removes underline from link */
   font-size: 18px; /* Sets font size */
   margin: 0 15px; /* Add space around container */
