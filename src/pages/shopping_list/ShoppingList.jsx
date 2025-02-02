@@ -6,7 +6,7 @@ import ShoppingList from "../../components/shopping_list/ShoppingList";
 
 
 // Shopping List page function
-function ShoppingList() {
+function ShoppingListPage() {
     // Track and set the grocery items
     // Add some sample data for now
     const [groceryItems, setGroceryItems]= useState([
@@ -60,6 +60,6 @@ function ShoppingList() {
 }
 
 // Export the ShoppingList page
-export default ShoppingList
+export default ShoppingListPage;
 
 

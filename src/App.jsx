@@ -7,6 +7,7 @@ import Home from './pages/home/Home';  // Import Home page
 import Recipes from './pages/recipes/Recipes';  // Import Recipes page
 import Favorites from './pages/favorites/Favorites';  // Import Favorites page
 import MealPlannerPage from './pages/meal_planner/MealPlanner'; // Import MealPlaner page
+import ShoppingListPage from './pages/shopping_list/ShoppingList';  // Import Shopping List Page
 
 // App.jsx function 
 function App() {
@@ -21,7 +22,10 @@ function App() {
         <Route path='/recipes' element={<Recipes/>}/>
         {/* Add Favorites page route */}
         <Route path='/favorites' element={<Favorites/>}/>
+        {/* Add Meal Planner page route */}
         <Route path='/meal-planner' element={<MealPlannerPage/>}/>
+        {/* Add Shopping List page route */}
+        <Route path='/shopping-list' element={<ShoppingListPage/>}/>
       </Routes>
     </>
   );

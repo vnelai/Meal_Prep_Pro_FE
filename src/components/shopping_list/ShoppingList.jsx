@@ -50,4 +50,4 @@ function ShoppingList({groceryItem, updateGroceryItem, deleteGroceryItem}) {
 };
 
 // Exporting ShoppingList component
-export default ShoppingList
+export default ShoppingList;
