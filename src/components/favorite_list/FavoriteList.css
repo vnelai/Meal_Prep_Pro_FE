@@ -14,7 +14,7 @@
 .favorite-list-div h2 {
     text-align: center;  /* Center the title */
     color: #e9c46a;   /* Dark teal color */
-    font-size: 24px;  /* Font size */
+    font-size: 2rem; /* Font size */
 }
 
 /* Input box for adding a new favorite */

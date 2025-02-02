@@ -2,6 +2,8 @@
 .header-name {
     background-color: #212f3c; /* Background color */
     padding: 15px; /* Add space inside container  */
+    color: #66cdaa;
+    font-size: 2rem; /* Font size */
 }
 
 /* Styles for the add grocery section */
