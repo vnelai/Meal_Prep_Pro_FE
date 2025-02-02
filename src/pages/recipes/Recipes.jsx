@@ -7,7 +7,6 @@ import RecipeList from '../../components/recipe_list/RecipeList'; // Import Reci
 function Recipes() {
   return (
     <div>
-        <h2>Explore Recipes</h2>
         <RecipeSearch/>  
         <RecipeList/>
     </div>

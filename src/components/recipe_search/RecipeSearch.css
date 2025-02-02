@@ -1,0 +1,62 @@
+/* Styling for recipe search container  */
+.recipe-search-div {
+    display: flex;  /* Layout elements */
+    justify-content: flex-end;
+    align-items: center;  /* Vertically centered */
+    gap: 10px;  /* Gap between elements */
+    padding: 30px;  /* Space on top of elements */
+    max-width: 100%; /* Max width of container */
+    max-height: 5px;
+    margin: 0 auto; /* Space around elements */
+    background-color: #4d4d4d /* Background color */
+}
+
+/* Styling for h2 element in recipe search component */
+.recipe-search-header {
+    display: flex;  /* Layout elements */
+    align-items: center;  /* Vertically centered */
+    margin-right: 15px; /* Add spacing between h2 and input */
+}
+
+.recipe-search-header span {
+    color: #2A9D8F;
+}
+
+.recipe-search-div h2 {
+    margin: 0;  /* Remove default margin */
+    font-size: 1.5rem;  /* Adjust size */
+    white-space: nowrap; /* Prevent header from wrapping and taking two lines */
+    color: white;
+}
+
+
+
+/* Styling for input element */
+.recipe-search-div input {
+    width: 30%;  /* Set width of element */
+    padding: 10px;  /* Space around */
+    border-radius: 10px;  /* Rounding corners */
+    border: 1px solid #2A9D8F; /* Define border*/
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+    font-size: 1rem; /* Font size */
+}
+ 
+.recipe-search-div input::placeholder {
+    color: white; /* Text color */
+}
+
+/* Styling for search button */
+.recipe-search-div button {
+    padding: 10px 15px; /* Spacing around */
+    border-radius: 8px;  /* Rounding corners */
+    background-color: #2A9D8F; /* background color */
+    color: white;  /* Font color */
+    font-size: 1rem;  /* Font size */
+    cursor: pointer;  /* Cursor pointer */
+    border: none; /* remove border */
+    transition: background-color 0.3s ease;  /* Transition */
+}
+  
+.recipe-search-div button:hover {
+    background-color: #264653; /* Dark color on hover */ 
+}

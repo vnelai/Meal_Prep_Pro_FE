@@ -1,5 +1,6 @@
 // Import modules
 import React, { useState } from 'react';  // Import react and useState
+import './RecipeSearch.css'; // Import styling sheet
 
 
 // RecipeSearch function
@@ -23,7 +24,10 @@ function RecipeSearch() {
     };
 
   return (
-    <div>
+    <div className='recipe-search-div'>
+        <div className="recipe-search-header">
+            <h2>Explore <span>Recipes</span></h2>
+        </div>
         <input 
         type="text" 
         value={searchQuery} 
