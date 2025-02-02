@@ -1,0 +1,102 @@
+/* Styling for Meal Planner container */
+.meal-planner-div {
+    padding: 20px; /* Space inside container */
+    max-width: 900px; /* Max width */
+    margin: 0 auto; /* Center  */
+    font-family: Arial, sans-serif; /* Font style */
+}
+
+
+/* Header Styling */
+h2 {
+    text-align: center; /*  Align text in center */
+    color: #66cdaa; /* Text color */
+    font-size: 2rem; /* Font size */
+    margin: 0; /* Space outside header */
+   
+}
+
+.header-div {
+    background-color: #212f3c; /* Background color */
+    padding: 10px; /* Add space inside container  */
+    border: 1.5px solid #37474f; /* Define border */
+}
+
+
+/* Weekly calender styling */
+.weekly-calendar {
+    display: grid; /* Grid layout */
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for days */
+}
+
+
+/* Styling for each day container */
+.day-div {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack vertically */
+    align-items: center; /* Center horizontally */
+    border: 1.5px solid #37474f; /* Define border */
+    padding: 5px; /* Space inside container */
+    background-color: #212f3c; /* Background color */
+    border-top: none; /* Remove top border */
+    min-height: 400px; /* Set a minimum height */
+    justify-content: space-between; /* Distribute space evenly between items */
+}
+
+.day-div h3 {
+  color: #e9c46a;  /* Text color */
+  font-size: 1.5rem;  /* Font size */
+  margin-bottom: 5px;  /* Space bottom */
+}
+
+.selected-meal {
+  margin-bottom: 20px; /* Space bottom */
+  font-size: 1.2rem; /* Font size */
+  color: #66cdaa; /* Font color */
+}
+
+select {
+  padding: 8px; /* Space inside container */
+  border: 1px solid #2a9d8f; /* Define border */
+  border-radius: 5px; /* Round corners */
+  font-size: 1rem; /* Font size */
+  width: 100%; /* width size */
+  background-color: #ffffff; /* Background color */
+}
+
+/* Submit Button */
+button {
+  background-color: #2a9d8f; /* Background color */
+  color: white; /* Text color */
+  padding: 12px 20px;  /* Space inside container */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Round corners */
+  cursor: pointer; /* Pointer */
+  font-size: 1.2rem; /* Font size */
+  width: 100%; /* width size */
+  margin-top: 20px; /* Space top */
+}
+
+button:hover {
+  background-color: #264653; /* Background color */
+}
+
+button:active {
+  background-color: #1a6a5a; /* Background color */
+}
+
+
+/* Mobile view */
+@media (max-width: 768px) {
+    .weekly-calendar {
+        display: flex; /* Flexbox layout */
+        flex-direction: column; /* Stack days vertically */
+        gap: 10px; /* Add some space between the days */
+    }
+    
+    .day-div {
+        flex-direction: row; /* Row layout */
+        justify-content: space-between; /* Space between meals */
+        min-height: auto; /* Adjust height automatically */
+    }
+}

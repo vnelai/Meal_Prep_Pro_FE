@@ -4,7 +4,7 @@
     justify-content: flex-end;
     align-items: center;  /* Vertically centered */
     gap: 10px;  /* Gap between elements */
-    padding: 30px;  /* Space on top of elements */
+    padding: 30px;  /* Space inside container */
     max-width: 100%; /* Max width of container */
     max-height: 5px;
     margin: 0 auto; /* Space around elements */
@@ -34,7 +34,7 @@
 /* Styling for input element */
 .recipe-search-div input {
     width: 30%;  /* Set width of element */
-    padding: 10px;  /* Space around */
+    padding: 10px;  /* Space inside container */
     border-radius: 10px;  /* Rounding corners */
     border: 1px solid #2A9D8F; /* Define border*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
@@ -47,7 +47,7 @@
 
 /* Styling for search button */
 .recipe-search-div button {
-    padding: 10px 15px; /* Spacing around */
+    padding: 10px 15px; /* Spacing inside container */
     border-radius: 8px;  /* Rounding corners */
     background-color: #2A9D8F; /* background color */
     color: white;  /* Font color */

@@ -10,7 +10,7 @@
   align-items: center; /* Center vertically */
   text-align: center; /* Center text */
   color: #264653; /* font color */
-  padding: 20px; /* Space around */
+  padding: 20px; /* Space inside container */
 }
 
 /* Hero text styling */
@@ -29,7 +29,7 @@
 .cta-btns .cta-btn {
     background-color: #E9C46A; /* Background color */
     color: #264653;  /* Text color */
-    padding: 15px 30px; /* Space around */
+    padding: 15px 30px; /* Space inside container */
     font-size: 1.2rem; /* Font size */
     border-radius: 5px; /* Rounding corners */
     text-decoration: none; /* No underline */

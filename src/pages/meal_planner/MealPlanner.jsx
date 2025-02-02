@@ -25,7 +25,6 @@ function MealPlannerPage() {
 
   return (
     <div>
-        <h2>Meal Planner</h2>
         <MealPlanner favorites={favorites}/>
     </div>
   );

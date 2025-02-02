@@ -1,5 +1,6 @@
 // Import modules
 import React, { useEffect, useState } from "react"; // Import React
+import './RecipeList.css';  // Import css file
 
 //RecipeList component function
 function RecipeList() {
@@ -22,14 +23,18 @@ function RecipeList() {
   }, []); // Empty dependency because I want the function to run once when the component mounts
 
   return (
-    <div>
-      <h1>Recipe List</h1>
-      <ul>
+    <div className="recipe-list-div">
         {/* Mapping over recipes array and rendering data */}
         {recipes.map((recipe, index) => (
-          <li key={index}>{recipe.title}</li> 
-        ))}
-      </ul>
+        <div key={index} className="recipe-card">
+          <img src={recipe.image} alt={recipe.title} />
+          <div className="card-content">
+          <h3>{recipe.title}</h3>
+          <p>{recipe.summary}</p>
+          <button>View Details</button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
