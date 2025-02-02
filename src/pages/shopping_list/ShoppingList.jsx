@@ -16,6 +16,9 @@ function ShoppingListPage() {
         { _id: 3, name: "Bread" }
     ]);
 
+    // Track and set new grocery items
+    const [newGroceryItem, setNewGroceryItem] = useState("");
+
     // Function to update a grocery item
     const updateGroceryItem = (id, updatedName) => {
         // Update the groceryItems state from the previous state to the updated one
@@ -42,6 +45,18 @@ function ShoppingListPage() {
         );      
     };
 
+    // Function to add a new grocery item
+    const addGroceryItem = () => {
+        // If there's no new item entered don't save anything
+        if (newGroceryItem.trim() === "") return;
+        // Creating a new grocery item wih unique id by using Date.now
+        const newGrocery = { _id: Date.now(), name: newGroceryItem };
+        // Update the Main GroceryItems state by adding the new grocery item
+        setGroceryItems((prevGroceryItem) => [...prevGroceryItem, newGrocery]);
+        // Reset the New grocery item state 
+        setNewGroceryItem("");
+    };
+
   return (
     <div>
         <h2 className="header-name">Shopping List</h2>
@@ -56,8 +71,20 @@ function ShoppingListPage() {
             deleteGroceryItem={deleteGroceryItem}
             />
         ))}
+        {/* Add new grocery item with value the input value from new state */}
+        <div className="add-grocery-div">
+            <input
+                type="text"
+                value={newGroceryItem}
+                onChange={(event) => setNewGroceryItem(event.target.value)}
+                placeholder="Enter item..."
+                className="add-item-input"
+            />
+        {/* Pass handling function for adding grocery item to btn */}
+        <button onClick={addGroceryItem} className="add-item-btn">Add</button>
+        </div>   
     </div>
-  )
+  );
 }
 
 // Export the ShoppingList page

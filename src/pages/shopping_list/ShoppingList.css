@@ -1,4 +1,41 @@
+/* Styles for header */
 .header-name {
     background-color: #212f3c; /* Background color */
     padding: 10px; /* Add space inside container  */
+}
+
+/* Styles for the add grocery section */
+.add-grocery-div {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack vertically */
+    align-items: center; /* Center horizontally */
+    background: #212f3c; /* Background color */
+    padding: 15px; /* Add spacing inside container */
+    margin: 5px 0; /* Add spacing outside container */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow */
+    border: 2px solid #37474f; /* Define border */
+}
+
+/* Add input styling same as shopping-list-div input */
+.add-grocery-div input {
+    padding: 5px; /* Spacing inside container */
+    font-size: 16px; /* Font size */
+    border: 1px solid #ccc; /* Define border */
+    border-radius: 5px; /* Round corners */
+}
+
+/* Add button styling same as shopping-list-div button */
+.add-grocery-div button {
+    background: #2A9D8F; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Spacing inside container */
+    margin-left: 10px; /* Space between button and input */
+    border-radius: 5px; /* Rounding corners */
+    cursor: pointer; /* Cursor pointer */
+    max-width: 100px;
+}
+
+.add-grocery-div button:hover {
+    background: #264656; /* Background-color on hover */
 }
