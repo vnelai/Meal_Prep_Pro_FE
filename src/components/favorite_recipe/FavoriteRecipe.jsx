@@ -1,21 +1,24 @@
 // Import Modules 
-//Import react, useState, and useEffect
-import React,  { useState, useEffect } from 'react';
+import React,  { useState, useEffect } from 'react';  //Import react, useState, and useEffect
+import { useParams, useNavigate } from 'react-router-dom'; // to get the recipe ID from URL and navigate through our react app
 
 
 // FavoriteRecipe function
 function FavoriteRecipe() {
+    const { id } = useParams(); // Get id from url param
+    const navigate = useNavigate(); // Navigate with useNavigate
     // Track and set the states
-    const [favorites, setFavorites] = useState([]);
-    const [newRecipe, setNewRecipe] = useState({title: "", ingredients: ""});
-    const [editId, setEditId] = useState("");
+    const [recipe, setRecipe] = useState({}); 
+    const [isEditing, setIsEditing] = useState(false); // State for edit mode toggle
+    const [updatedRecipe, setUpdatedRecipe] = useState({});
 
-    const fetchFavorites = async () => {
+
+    const fetchRecipe = async () => {
         try {
             // Fetching from our backend route favorites
-            const res = await fetch('/api/favorites');
+            const res = await fetch(`http://localhost:5001/api/favorites/${id}`);
             const data = await res.json();
-            setFavorites(data);
+            setRecipe(data);
         } catch (error) {
             console.error("Failed to fetch favorites:", error);
         }
@@ -23,118 +26,138 @@ function FavoriteRecipe() {
 
     // useEffect to fetch from api
     useEffect(() => {
-        fetchFavorites();
-    }, []);  // Once when it mounts
-
-    // Function to handle adding a recipe to favorites
-    const handleAddRecipe = async () => {
-        if (!newRecipe.title || !newRecipe.ingredients) return;
-        try {
-            const res = await fetch('/api/favorites', {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(newRecipe),
-            });
-            fetchFavorites(); //Refresh the favorites list
-            // const data = await res.json();  // Convert the res to json format
-            // setFavorites([...favorites, data]); // Merge the new recipe data with existing favorites
-            // setNewRecipe({title: "", ingredients: ""}); // Reset newRecipe state
-        } catch (error) {
-            console.error("Failed to add recipe:", error);
-        }
-    };
-
-    // Function to handle edit of favorite recipe
-    const handleEditRecipe = (recipe) => {
-        setNewRecipe(recipe);
-        setEditId(recipe._id);
-    };
+        fetchRecipe();
+        console.log(recipe);
+    }, [id]);  // Once when it mounts
 
 
-    // Function to handle the favorite recipe update
+    // Function to handle edit of favorite recipe in the backend
     const handleUpdateRecipe = async () => {
         try {
-            // Send request to update recipe with PUT
-            await fetch(`/api/favorites/${editId}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json"}, //Tell server we are sending JSON data
-                body: JSON.stringify(newRecipe), // Convert object to JSON string for sending data to server
+            // Send request to update recipe with PUT method then backend will handle the route with the method specified
+            const res = await fetch(`http://localhost:5001/api/favorites/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json', //Tell server we are sending JSON data
+                },
+                body: JSON.stringify(updatedRecipe),  // Convert object to JSON string for sending data to server
             });
-            // Update favorites state by replacing the edited recipe
-            setFavorites(
-                // Loop through favorites array
-                favorites.map((recipe) => 
-                    // Check if recipe id matched the id being edited
-                    // If it matches then create a new object by merging existing recipe with newRecipe
-                    // Spread operator used to copy properties
-                    // If it doesn't match keep recipe as is
-                    recipe._id === editId ? {...recipe, ...newRecipe} : recipe
-                )
-            );
-            setNewRecipe({title: "", ingredients: ""}); // Reset inputs
-            setEditId("");  // Reset input
+
+            if (res.ok) {
+                setIsEditing(false);  // Exit edit mode
+                fetchRecipe(); // Refresh recipe
+            }
         } catch (error) {
-            console.error("Failed to update favorite recipe:", error);
+            console.error("Failed to update recipe:", error)
         }
     };
 
-    // Function to handle the delete of favorite recipe
-    const handleDelete = async (id) => {
-        try {
-            await fetch(`/api/favorites/${id}`, {method: "DELETE"});
-            // Update the state to remove the deleted favorite
-            // filter() creates a new array that excludes the deleted favorite.
-            // (fav._id != id) target and keep only the favorite id that doesn't match deleted id
-            setFavorites(favorites.filter((recipe) => recipe._id !== id));
-        } catch (error) {
-            console.error("Failed to delete recipe:", error);
+
+    // Handle input field changes when editing
+    const handleInputChange = (event, index = null) => {
+        const { name, value } = event.target;
+
+        // If editing an ingredient, update the specific ingredient
+        if (index !== null) {
+        const updatedIngredients = [...updatedRecipe.ingredients || []];
+        updatedIngredients[index] = {
+            ...updatedIngredients[index],
+            ingredientName: value,
+        };
+        setUpdatedRecipe((prev) => ({ ...prev, ingredients: updatedIngredients }));
+        } else {
+        setUpdatedRecipe((prev) => ({ ...prev, [name]: value }));
         }
     };
 
-  // Staging on elements on component
-  return (
-    <div>
-        <h2>Favorite Recipes</h2>
-        <input
-        type="text" 
-        placeholder='Recipe Name'
-        value={newRecipe.title}
-        // Update the title of the new recipe with the input value
-        //...newRecipe copies the new recipe object and then we can update the title
-        onChange={(event) => setNewRecipe({...newRecipe, title: event.target.value})}
-        />
-        <input 
-        type="text" 
-        placeholder='Ingredients'
-        value={newRecipe.ingredients}
-        onChange={(event) => setNewRecipe({...newRecipe, ingredients:event.target.value})}
-        />
-        {editId ? (
-            // If editId state has a value the button will call handleUpdate Recipe
-            <button onClick={handleUpdateRecipe}>Update</button>
-        ) : (
-            //If editId state has no value the button will call handleAddRecipe Recipe
-            <button onClick={handleAddRecipe}>Add</button> 
-        )}
-        <ul>
-            {/* Loop through each favorite recipe */}
-            {favorites.map((favRecipe) => (
-                <li key={favRecipe._id}>
-                    {/* Display title of recipe */}
-                    <strong>{favRecipe.title}</strong> 
-                    {/* Display ingredients of recipe */}
-                    <p>{favRecipe.ingredients}</p>
-                    {/* On click handle editing of recipe */}
-                    <button onClick={() => handleEditRecipe(favRecipe)}>Edit</button>
-                    {/* On click delete the recipe from favorites */}
-                    <button onClick={() => handleDelete(favRecipe._id)}>Delete</button>
-                </li>
+
+    // If there's no recipe or if recipe is an empty object return loading div
+    if (!recipe || Object.keys(recipe).length ===0) return <div>Loading...</div>;
+
+    return (
+        <div className="recipe-details-div">
+          <h1>{isEditing ? (
+            // If editing toggle on then create an input filed for user to be able to edit name
+            <input
+              type="text"
+              name="recipeName"
+              value={updatedRecipe.recipeName || ''}
+              onChange={handleInputChange}
+            />
+          ) : (
+            //  If editing toggle is off then leave recipe name as is
+            recipe.recipeName
+          )}</h1>
+          {isEditing ? (
+            <input
+              type="text"
+              name="recipeImg"
+              value={updatedRecipe.recipeImg || ''}
+              onChange={handleInputChange}
+              placeholder="Image URL"
+            />
+          ) : (
+            // If we are not editing image than show image by creating an image element
+            recipe.recipeImg && <img src={recipe.recipeImg} alt={recipe.recipeName} />
+          )}
+          
+          <h3>Ingredients</h3>
+          <ul>
+            {/* If ingredients exist in updated recipe then we can loop through each ingredient */}
+            {updatedRecipe.ingredients && updatedRecipe.ingredients.map((ingredient, index) => (
+              <li key={index}>
+                {isEditing ? (
+                  <>
+                    <input
+                      type="text"
+                      name="ingredientName"
+                      value={ingredient.name}
+                      onChange={(event) => handleInputChange(event, index)}
+                    />
+                    <input
+                      type="text"
+                      name="ingredientQuantity"
+                      value={ingredient.quantity}
+                      onChange={(event) => handleInputChange(event, index)}
+                    />
+                    <input
+                      type="text"
+                      name="ingredientUnit"
+                      value={ingredient.unit}
+                      onChange={(event) => handleInputChange(event, index)}
+                    />
+                  </>
+                ) : (
+                    // Render the output in this format
+                  `${ingredient.name} - ${ingredient.quantity} ${ingredient.unit}`
+                )}
+              </li>
             ))}
-        </ul>
-    </div>
-  );
-};
+          </ul>
+    
+          <h3>Instructions</h3>
+          <textarea
+            name="instructions"
+            value={updatedRecipe.instructions || ''}
+            onChange={handleInputChange}
+            disabled={!isEditing}
+          />
+          
+          <div className="actions">
+            {isEditing ? (
+              <>
+                <button onClick={handleUpdateRecipe}>Save</button>
+                <button onClick={() => setIsEditing(false)}>Cancel</button>
+              </>
+            ) : (
+              <button onClick={() => { setUpdatedRecipe(recipe); setIsEditing(true); }}>Edit</button>
+            )}
+          </div>
+        </div>
+      );
+    }
+    
 
 
 // Export FavoriteRecipe component
-export default FavoriteRecipe
+export default FavoriteRecipe;
