@@ -50,9 +50,9 @@ function Recipes() {
     }
   }, [searchQuery, recipeData]); // Filter when searchQuery or recipe data changes
 
-  // const handleSearch = () => {
-  //   setSearchPerformed(true); // Activate when user clicks search
-  // };
+  const handleSearch = () => {
+    setSearchPerformed(true); // Activate when user clicks search
+  };
 
 console.log(recipeData); // This will show the structure of the data
 
@@ -61,7 +61,7 @@ console.log(recipeData); // This will show the structure of the data
         <RecipeSearch
           searchQuery={searchQuery} 
           setSearchQuery={setSearchQuery}
-          // handleSearch={handleSearch} 
+          handleSearch={handleSearch} 
         />  
         <RecipeList recipes={filteredRecipes || []} />
     </div>

@@ -11,11 +11,18 @@ function RecipeList({ recipes }) {
       {recipes && recipes.length > 0 ? ( 
         // Mapping over recipes array and rendering data
         recipes.map((recipe, index) => (
-        <div key={index} className="recipe-card">
+        <div key={recipe.recipeId || recipe._id} className="recipe-card">
           <img src={recipe.image} alt={recipe.title} />
           <div className="card-content">
           <h3>{recipe.title}</h3>
-          <p>{recipe.summary}</p>
+          <p>{recipe.instructions}</p>
+          <ul>
+              {recipe.extendedIngredients && recipe.extendedIngredients.map((ingredient, idx) => (
+                <li key={idx}>
+                  {ingredient.name} - {ingredient.amount} {ingredient.unit}
+                </li>
+              ))}
+          </ul>
           <button>View Details</button>
           </div>
         </div>
