@@ -107,7 +107,7 @@ function FavoriteList() {
                 placeholder='Add a new favorite recipe...'
             />
             {/* Activate addFav function when clicking on button */}
-            <button onClick={addFav}>Add</button> 
+            <button className="add-fav-btn" onClick={addFav}>Add</button> 
         </div>
     </> 
   );

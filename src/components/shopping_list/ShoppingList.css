@@ -18,7 +18,8 @@
 } 
 
 .shopping-list-div input {
-    padding: 5px; /* Add spacing inside container */
+    width: 25%;  /* Full width */
+    padding: 8px; /* Add spacing inside container */
     font-size: 16px; /* Font size */
     border: 1px solid #ccc; /* Define border */
     border-radius: 5px; /* Round corners */
