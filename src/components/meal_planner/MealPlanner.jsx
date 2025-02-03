@@ -16,6 +16,27 @@ function MealPlanner({ favorites }) {
     Sunday: { Breakfast: "", Lunch: "", Dinner: "" },
   });
 
+  // Use state to store fetched favorites
+  const [fetchedFavorites, setFetchedFavorites] = useState(favorites || []);
+
+  useEffect(() => {
+    if (!favorites || favorites.length === 0) {
+      async function fetchFavorites() {
+        try {
+          const res = await fetch("http://localhost:5001/api/favorites");
+          const data = await res.json();
+          console.log(data); // Check the data being fetched
+          setFetchedFavorites(data); // Set the fetched data
+        } catch (error) {
+          console.error("Failed to fetch favorite recipes:", error);
+        }
+      }
+      fetchFavorites(); // Fetch data if favorites isn't passed
+    }
+  }, [favorites]);
+
+  console.log(fetchedFavorites); 
+
   // Handle meal selection for each day
   const handleMealSelect = (day, mealType, meal) => {
     // Update the state of the meal
@@ -35,10 +56,11 @@ function MealPlanner({ favorites }) {
     // Prevent page reload, which is default for form submission
     event.preventDefault();
 
-    // Send saved meal planner data to backend
+    console.log("Submitting meal plan: ", meals); // Log the meals data
+
     try {
       // Send data to server with POST method
-      const res = await fetch("/api/meal-planner", {
+      const res = await fetch("http://localhost:5001/api/favorites", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(meals),
@@ -83,9 +105,9 @@ function MealPlanner({ favorites }) {
                     {/* Default option, prompt user to select a meal from dropdown  */}
                     <option value="">Select a favorite meal</option>
                     {/* Loop through favorites array and add them as choice to dropdown menu */}
-                    {favorites.map((meal) => (
-                      <option key={meal.id} value={meal.name}>
-                        {meal.name}
+                    {(fetchedFavorites || []).map((meal, index) => (
+                      <option key={index} value={meal.recipeName}>
+                        {meal.recipeName}
                       </option>
                     ))}
                   </select>

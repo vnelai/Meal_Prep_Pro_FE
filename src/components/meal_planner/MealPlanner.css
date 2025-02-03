@@ -61,6 +61,7 @@ select {
   border-radius: 5px; /* Round corners */
   font-size: 1rem; /* Font size */
   width: 100%; /* width size */
+  color: black;
   background-color: #ffffff; /* Background color */
 }
 
