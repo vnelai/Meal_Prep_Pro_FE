@@ -9,19 +9,19 @@ import MealPlanner from '../../components/meal_planner/MealPlanner';
 function MealPlannerPage() {
     const [favorites, setFavorites]= useState([]);
 
-    useEffect(() => {
-        //Fetch favorites meals from backend
-        async function fetchFavorites() {
-            try {
-                const res = await fetch('/api/favorites');
-                const data = await res.json();
-                setFavorites(data);  // Set results in json format
-            } catch (error) {
-                console.error ("Failed to fetch favorite recipes:", error);
-            }
-        }
-        fetchFavorites(); //Call fetch function
-    }, []);
+    // useEffect(() => {
+    //     //Fetch favorites meals from backend
+    //     async function fetchFavorites() {
+    //         try {
+    //             const res = await fetch('/api/favorites');
+    //             const data = await res.json();
+    //             setFavorites(data);  // Set results in json format
+    //         } catch (error) {
+    //             console.error ("Failed to fetch favorite recipes:", error);
+    //         }
+    //     }
+    //     fetchFavorites(); //Call fetch function
+    // }, []);
 
   return (
     <div>

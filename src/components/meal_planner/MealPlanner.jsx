@@ -60,7 +60,7 @@ function MealPlanner({ favorites }) {
 
     try {
       // Send data to server with POST method
-      const res = await fetch("http://localhost:5001/api/favorites", {
+      const res = await fetch("http://localhost:5001/api/meal-planner", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(meals),
@@ -75,6 +75,24 @@ function MealPlanner({ favorites }) {
       console.error("Failed to save meal plan:", error);
     }
   };
+
+  // Fix issue of meal plan not populating after refresh
+  useEffect(() => {
+    async function fetchMealPlan() {
+      try {
+        const res = await fetch("http://localhost:5001/api/meal-planner");
+        const data = await res.json();
+        console.log("Fetched meal plan:", data);
+        // Data in backend is defined as "weekMealPlan"
+        if (Array.isArray(data) && data.length > 0) {
+          setMeals(data[data.length - 1].weekMealPlan); // Get the most recent meal plan
+        }
+      } catch (error) {
+        console.error("Error fetching meal plan:", error);
+      }
+    }
+    fetchMealPlan();
+  }, []);
 
   // Staging elements
   return (
