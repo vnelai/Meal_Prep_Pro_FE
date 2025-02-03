@@ -20,7 +20,7 @@ function FavoriteList() {
     const fetchFavorites = async () => {
         try {
             // We will be fetching from our backend route '/api/favorites' and formatting result in json
-            const res = await fetch ('/api/favorites');
+            const res = await fetch ('http://localhost:5001/api/favorites');
             const data = await res.json();
             setFavorites(data);
         } catch (error) {
@@ -36,10 +36,12 @@ function FavoriteList() {
     // Function to add favorite to FavoriteList
     const addFav = async () => {
         try {
-            const res= await fetch('/api/favorites', {
+            const res= await fetch('http://localhost:5001/api/favorites', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: newFavRecipe.trim() }),
+                body: JSON.stringify({ 
+                    recipeName: newFavRecipe.trim(),
+                }),
             });
             await fetchFavorites(); // Refresh list
             setNewFavRecipe(""); //Reset the state
@@ -67,7 +69,7 @@ function FavoriteList() {
     // Function to delete favorite from FavoriteList
     const deleteFav = async (id) => {
         try {
-            await fetch(`/api/favorites/${id}`, { method: "DELETE" });
+            await fetch(`http://localhost:5001/api/favorites/${id}`, { method: "DELETE" });
             // Update the state to remove the deleted favorite
             // filter() creates a new array that excludes the deleted favorite.
             // (fav._id != id) target and keep only the favorite id that doesn't match deleted id
@@ -78,32 +80,40 @@ function FavoriteList() {
     };
 
   return (
-    <div className='favorite-list-div'>
-        <ul>
-            {favorites.map((favorite) => (
-                <li key={favorite._id}>
-                    {favorite.name}
-                    {/* Link to view details */}
-                    <Link to={`/favorites/${favorite._id}`}>
-                        <button>View Details</button>
-                    </Link>
-                    {/* Delete button */}
-                    <button onClick={() => deleteFav(favorite._id)}>Delete</button>  
-                </li>
-            ))}
-        </ul>
-        {/* Add New Favorite */}
-        <input 
-            type="text"
-            value={newFavRecipe}
-            onChange={(event) => setNewFavRecipe(event.target.value)}
-            placeholder='Add a new favorite recipe...'
-        />
-        {/* Activate addFav function when clicking on button */}
-        <button onClick={addFav}>Add</button> 
-    </div>
+    <>
+        <div>
+            <ul>
+                {favorites.map((favorite) => (
+                    <li key={favorite._id} className='favorite-list-div'>
+                        <span className='fav-name'>{favorite.recipeName}</span>
+                        <div className='fav-btns'>
+                            {/* Link to view details */}
+                            <Link to={`/favorites/${favorite._id}`}>
+                                <button className='details-btn'>Details</button>
+                            </Link>
+                            {/* Delete button */}
+                            <button className="delete-btn" onClick={() => deleteFav(favorite._id)}>Delete</button>   
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
+        <div className='add-new-fav-recipe-div'>   
+            {/* Add New Favorite */}
+            <input 
+                type="text"
+                value={newFavRecipe}
+                onChange={(event) => setNewFavRecipe(event.target.value)}
+                placeholder='Add a new favorite recipe...'
+            />
+            {/* Activate addFav function when clicking on button */}
+            <button onClick={addFav}>Add</button> 
+        </div>
+    </> 
   );
 };
+    
+    
 
 
 // Export FavoriteList component
