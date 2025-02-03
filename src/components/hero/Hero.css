@@ -17,11 +17,13 @@
 .hero-text h1 {
   font-size: 3rem;
   margin-bottom: 15px;
+  color: #264656;
 }
 
 .hero-text p {
   font-size: 1.5rem;
   margin-bottom: 30px;
+  color: #264656;
 }
 
 
