@@ -76,3 +76,19 @@ button:focus {
 button + button {
     margin-left: 10px;  /* Space left */
 }
+
+.ingredient {
+    display: flex; /* Flexbox Layout */
+    align-items: center; /* Vertically align center */
+    gap: 10px; /* Add spacing between inputs */
+}
+
+.ingredient input { 
+    padding: 5px; /* Add space */
+    border: 1px solid #ccc; /* Define border */
+    flex: 1;
+}
+
+.ingredient span { 
+    margin-right: 10px;
+}

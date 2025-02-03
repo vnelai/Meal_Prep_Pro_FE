@@ -58,17 +58,30 @@ function FavoriteRecipe() {
     const handleInputChange = (event, index = null) => {
         const { name, value } = event.target;
 
-        // If editing an ingredient, update the specific ingredient
-        if (index !== null) {
-        const updatedIngredients = [...updatedRecipe.ingredients || []];
-        updatedIngredients[index] = {
-            ...updatedIngredients[index],
-            [name]: value,
-        };
-        setUpdatedRecipe((prev) => ({ ...prev, ingredients: updatedIngredients }));
-        } else {
-        setUpdatedRecipe((prev) => ({ ...prev, [name]: value }));
-        }
+        // Update the state
+        setUpdatedRecipe(prev => {
+          const updatedIngredients = [...(prev.ingredients || [])]; // Copy existing ingredients
+
+          if (index !== null) {
+              // Update existing ingredient
+              updatedIngredients[index] = { ...updatedIngredients[index], [name]: value };
+          } else {
+              // Update other recipe properties (name, instructions, etc.)
+              return { ...prev, [name]: value };
+          }
+
+          return { ...prev, ingredients: updatedIngredients }; // Return updated state
+      });
+  };
+
+
+
+    // Handle adding ingredients
+    const handleAddIngredient = () => {
+      setUpdatedRecipe(prev => ({
+          ...prev,
+          ingredients: [...(prev.ingredients || []), { name: '', quantity: '', unit: '' }]
+      }));
     };
 
 
@@ -107,33 +120,73 @@ function FavoriteRecipe() {
             {/* If ingredients exist in updated recipe then we can loop through each ingredient */}
             {updatedRecipe.ingredients && updatedRecipe.ingredients.map((ingredient, index) => (
               <li key={index}>
-                {isEditing ? (
-                  <>
-                    <input
-                      type="text"
-                      name="name"
-                      value={ingredient.name}
-                      onChange={(event) => handleInputChange(event, index)}
-                    />
-                    <input
-                      type="text"
-                      name="quantity"
-                      value={ingredient.quantity}
-                      onChange={(event) => handleInputChange(event, index)}
-                    />
-                    <input
-                      type="text"
-                      name="unit"
-                      value={ingredient.unit}
-                      onChange={(event) => handleInputChange(event, index)}
-                    />
-                  </>
+                <div className='ingredient'>
+                  {isEditing ? (
+                    <>
+                      <input
+                        type="text"
+                        name="name"
+                        value={ingredient.name}
+                        onChange={(event) => handleInputChange(event, index)}
+                        placeholder="Ingredient Name" 
+                      />
+                      <input
+                        type="text"
+                        name="quantity"
+                        value={ingredient.quantity}
+                        onChange={(event) => handleInputChange(event, index)}
+                        placeholder="Quantity" 
+                      />
+                      <input
+                        type="text"
+                        name="unit"
+                        value={ingredient.unit}
+                        onChange={(event) => handleInputChange(event, index)}
+                        placeholder="Unit" 
+                      />
+                    </>  
                 ) : (
-                    // Render the output in this format
-                  `${ingredient.name} - ${ingredient.quantity} ${ingredient.unit}`
+                  <div className='ingredient'> 
+                    {/* Display structure when not editing */}
+                    <span>{ingredient.name}</span> - 
+                    <span>{ingredient.quantity}</span> 
+                    <span>{ingredient.unit}</span>
+                 </div>
                 )}
+              </div>  
               </li>
             ))}
+            {/* Add the edit ingredient section */}
+            {isEditing && (
+                      <li key={updatedRecipe.ingredients?.length || 0}> {/* Add a new ingredient entry */}
+                        <div className='ingredient'>
+                          <input
+                                  type="text"
+                                  name="name"
+                                  placeholder="Ingredient Name"
+                                  onChange={(event) => handleInputChange(event)} // Pass the next available index
+                              />
+                              <input
+                                  type="text"
+                                  name="quantity"
+                                  placeholder="Quantity"
+                                  onChange={(event) => handleInputChange(event)}
+                              />
+                              <input
+                                  type="text"
+                                  name="unit"
+                                  placeholder="Unit"
+                                  onChange={(event) => handleInputChange(event)}
+                              />
+                        </div>
+  
+                      </li>      
+                )}
+                {isEditing && (
+                    <li>
+                        <button onClick={handleAddIngredient}>Add Ingredient</button>
+                    </li>
+                )}
           </ul>
     
           <h3>Instructions</h3>
