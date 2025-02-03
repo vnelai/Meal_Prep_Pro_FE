@@ -13,6 +13,8 @@ function Recipes() {
   const [recipeData, setRecipeData] = useState([]);
   // Track if search has been performed
   const [searchPerformed, setSearchPerformed] = useState(false); 
+  // Track and set filtered recipes
+  const [filteredRecipes, setFilteredRecipes] = useState([]); 
 
   useEffect(() => {
     // Function to fetch api recipes
@@ -22,9 +24,11 @@ function Recipes() {
         const res = await fetch(`http://localhost:5001/api/recipes/search?query=${searchQuery}`);
         const data = await res.json();
         setRecipeData(data);  //Save data to state
+        setFilteredRecipes(data); // Initially, filtered data is all data
       } catch (error) {
         console.error("Failed to fetch recipes:", error);
         setRecipeData([]); // Clear data on error
+        setFilteredRecipes([]);
       }     
     };
 
@@ -34,11 +38,21 @@ function Recipes() {
     }
 
 
-  }, [searchPerformed,searchQuery]);   // Re-fetch recipes when the search query changes.
+  }, []);   // Fetch once once it mounts
 
-  const handleSearch = () => {
-    setSearchPerformed(true); // Activate when user clicks search
-  };
+  useEffect(() => {
+    // Filter recipes when user searches
+    if (recipeData.length > 0) {
+      const filteredData = recipeData.filter(recipe =>
+        recipe.title.toLowerCase().includes(searchQuery.toLowerCase()) // Filter by title
+      );
+      setFilteredRecipes(filteredData);
+    }
+  }, [searchQuery, recipeData]); // Filter when searchQuery or recipe data changes
+
+  // const handleSearch = () => {
+  //   setSearchPerformed(true); // Activate when user clicks search
+  // };
 
 console.log(recipeData); // This will show the structure of the data
 
@@ -47,9 +61,9 @@ console.log(recipeData); // This will show the structure of the data
         <RecipeSearch
           searchQuery={searchQuery} 
           setSearchQuery={setSearchQuery}
-          handleSearch={handleSearch} 
+          // handleSearch={handleSearch} 
         />  
-        <RecipeList recipes={recipeData || []} />
+        <RecipeList recipes={filteredRecipes || []} />
     </div>
   )
 }
