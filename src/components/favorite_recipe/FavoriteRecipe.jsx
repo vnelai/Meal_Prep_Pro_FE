@@ -1,14 +1,14 @@
 // Import Modules 
 import React,  { useState, useEffect } from 'react';  //Import react, useState, and useEffect
 import { useParams, useNavigate } from 'react-router-dom'; // to get the recipe ID from URL and navigate through our react app
-
+import './FavoriteRecipe.css';  // Import styling sheet
 
 // FavoriteRecipe function
 function FavoriteRecipe() {
     const { id } = useParams(); // Get id from url param
     const navigate = useNavigate(); // Navigate with useNavigate
     // Track and set the states
-    const [recipe, setRecipe] = useState({}); 
+    const [recipe, setRecipe] = useState(null); 
     const [isEditing, setIsEditing] = useState(false); // State for edit mode toggle
     const [updatedRecipe, setUpdatedRecipe] = useState({});
 
@@ -18,6 +18,7 @@ function FavoriteRecipe() {
             // Fetching from our backend route favorites
             const res = await fetch(`http://localhost:5001/api/favorites/${id}`);
             const data = await res.json();
+            setUpdatedRecipe(data); 
             setRecipe(data);
         } catch (error) {
             console.error("Failed to fetch favorites:", error);
@@ -62,7 +63,7 @@ function FavoriteRecipe() {
         const updatedIngredients = [...updatedRecipe.ingredients || []];
         updatedIngredients[index] = {
             ...updatedIngredients[index],
-            ingredientName: value,
+            [name]: value,
         };
         setUpdatedRecipe((prev) => ({ ...prev, ingredients: updatedIngredients }));
         } else {
@@ -72,7 +73,7 @@ function FavoriteRecipe() {
 
 
     // If there's no recipe or if recipe is an empty object return loading div
-    if (!recipe || Object.keys(recipe).length ===0) return <div>Loading...</div>;
+    if (!recipe) return <div>Loading...</div>;
 
     return (
         <div className="recipe-details-div">
@@ -110,19 +111,19 @@ function FavoriteRecipe() {
                   <>
                     <input
                       type="text"
-                      name="ingredientName"
+                      name="name"
                       value={ingredient.name}
                       onChange={(event) => handleInputChange(event, index)}
                     />
                     <input
                       type="text"
-                      name="ingredientQuantity"
+                      name="quantity"
                       value={ingredient.quantity}
                       onChange={(event) => handleInputChange(event, index)}
                     />
                     <input
                       type="text"
-                      name="ingredientUnit"
+                      name="unit"
                       value={ingredient.unit}
                       onChange={(event) => handleInputChange(event, index)}
                     />

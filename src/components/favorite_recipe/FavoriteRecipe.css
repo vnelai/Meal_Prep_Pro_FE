@@ -1,0 +1,78 @@
+/* Recipe div styling */
+.recipe-details-div {
+    padding: 20px; /* Spacing */
+    max-width: 100%; /* Max width */
+    margin: 0 auto; /* Spacing */
+    background-color: #212f3c; /* Background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow */
+}
+
+h1 {
+    font-size: 2rem; /* Font-size */
+    color: #66cdaa;
+    margin-bottom: 10px; /* Bottom spacing */
+    text-align: center; /* Center text */
+    padding: 15px; /* Add space inside container  */
+
+}
+
+h3 {
+    font-size: 24px; /* Font size */
+    padding: 10px; /* Space inside container */
+    font-weight: bold; /* Font bold */
+    margin-top: 20px; /* Spacing top */
+    color: #e9c46a; /* Background color */
+}
+
+
+input, textarea {
+    width: 100%;  /* Width */
+    padding: 8px; /* spacing */
+    margin-top: 5px; /* Spacing-top */
+    margin-bottom: 15px; /* Spacing bottom */
+    border: 1px solid #ddd; /* Define border */
+    border-radius: 5px;  /* Round corners */
+    font-size: 1rem; /* Font-size */
+    box-sizing: border-box; /* Set box-sizing */
+}
+
+textarea {
+    height: 150px;  /* Height-size */
+}
+
+ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;  /* Spacing */
+}
+
+ul li {
+    margin-bottom: 10px; /* Space bottom */
+}
+
+.actions { 
+    text-align: center; /* Center text */
+    margin-top: 20px; /* Margin top */
+}
+
+button {
+    background-color: #2a9d8f;  /* background color */
+    color: white;  /* Text color  */
+    border: none; /* No underline */
+    padding: 10px 20px; /* Spacing */
+    font-size: 1rem; /* Font-size */
+    border-radius: 5px; /* Round corner */
+    cursor: pointer; /* Pointer */
+    transition: background-color 0.3s; /* Transition */
+}
+
+button:hover {
+    background-color: #264653;  /* Background-color */
+}
+
+button:focus {
+    outline: none;  /* Outline */
+}
+
+button + button {
+    margin-left: 10px;  /* Space left */
+}
