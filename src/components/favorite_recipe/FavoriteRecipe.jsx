@@ -35,18 +35,27 @@ function FavoriteRecipe() {
     // Function to handle edit of favorite recipe in the backend
     const handleUpdateRecipe = async () => {
         try {
+          const { newIngredient, ...rest } = updatedRecipe; // Destructure newIngredient
+          const finalRecipe = { ...rest };
+
+          //Fix issue with last ingredient not saving
+          if (newIngredient && Object.keys(newIngredient).length > 0) {
+              finalRecipe.ingredients = [...(rest.ingredients || []), newIngredient];
+          }
+
             // Send request to update recipe with PUT method then backend will handle the route with the method specified
             const res = await fetch(`http://localhost:5001/api/favorites/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json', //Tell server we are sending JSON data
                 },
-                body: JSON.stringify(updatedRecipe),  // Convert object to JSON string for sending data to server
+                body: JSON.stringify(finalRecipe),  // Convert object to JSON string for sending data to server
             });
 
             if (res.ok) {
                 setIsEditing(false);  // Exit edit mode
                 fetchRecipe(); // Refresh recipe
+                setUpdatedRecipe({}); //Clear newIngredient after save
             }
         } catch (error) {
             console.error("Failed to update recipe:", error)
@@ -63,14 +72,14 @@ function FavoriteRecipe() {
           const updatedIngredients = [...(prev.ingredients || [])]; // Copy existing ingredients
 
           if (index !== null) {
-              // Update existing ingredient
-              updatedIngredients[index] = { ...updatedIngredients[index], [name]: value };
+            // Update existing ingredient
+            updatedIngredients[index] = { ...updatedIngredients[index], [name]: value };
+            return { ...prev, ingredients: updatedIngredients }; // Update existing ingredient
           } else {
-              // Update other recipe properties (name, instructions, etc.)
-              return { ...prev, [name]: value };
+            // Handle new ingredient input (before it's added to the array)
+            const newIngredient = { ...(prev.newIngredient || {}), [name]: value };
+            return { ...prev, newIngredient }; // Store in a temporary newIngredient object
           }
-
-          return { ...prev, ingredients: updatedIngredients }; // Return updated state
       });
   };
 
