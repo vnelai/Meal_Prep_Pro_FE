@@ -11,11 +11,6 @@ function FavoriteList() {
     // Create and set newFavoriteRecipe
     const [newFavRecipe, setNewFavRecipe] = useState("");
 
-    // // Edit and set favorite recipe id
-    // const [editId,setEditId] = useState("");
-    // // Edit and set favorite recipe name
-    // const [editName, setEditName] = useState("");
-
     // fetchFavorites function that gets data and results in json format
     const fetchFavorites = async () => {
         try {

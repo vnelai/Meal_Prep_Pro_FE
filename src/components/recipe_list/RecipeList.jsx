@@ -11,7 +11,7 @@ function RecipeList({ recipes, addToFavorites }) {
       {recipes && recipes.length > 0 ? ( 
         // Mapping over recipes array and rendering data
         recipes.map((recipe, index) => (
-        <div key={recipe.recipeId || recipe._id} className="recipe-card">
+        <div key={recipe.recipeId || recipe._id || index} className="recipe-card">
           <img src={recipe.image} alt={recipe.title} />
           <div className="card-content">
           <h3>{recipe.title}</h3>

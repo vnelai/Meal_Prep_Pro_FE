@@ -24,7 +24,7 @@ function Recipes() {
   const fetchApiRecipes = async (query = '') => {
     try {
       // I will be fetching from backend route so my API_KEY remains hidden
-      const res = await fetch(`http://localhost:5001/api/recipes/search?query=${searchQuery}`);
+      // const res = await fetch(`http://localhost:5001/api/recipes/search?query=${searchQuery}`);
       const data = await res.json();
       setRecipeData(data.results || []);  //Save data to state
       setFilteredRecipes(data.results || []); // Initially, filtered data is all data
@@ -37,8 +37,34 @@ function Recipes() {
   };
 
   // Handle adding recipe to favorites
-  const handleAddToFavorites = (recipe) => {
-    setFavorites([...favorites, recipe]); // Add recipe to favorites
+  const handleAddToFavorites = async (recipe) => {
+    console.log(recipe)
+    // Restructure the recipe object to match the backend schema
+    const formattedRecipe = {
+      recipeName: recipe.title, // title from the API res maps to recipeName
+      recipeImg: recipe.image,  
+      instructions: recipe.instructions, // instructions remain as is
+      ingredients: recipe.extendedIngredients.map(ingredient => ({
+        name: ingredient.name,
+        quantity: ingredient.amount,
+        unit: ingredient.unit,
+      })),
+    };
+    
+    try {
+      // Save favorite to backend with a POST request
+      const res = await fetch('http://localhost:5001/api/favorites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(formattedRecipe),
+      });
+
+      // Save new favorite recipe to Favorites state
+      const savedFavorite = await res.json();
+      setFavorites([...favorites, savedFavorite]);
+    } catch (error) {
+      console.error("Failed to add recipe to favorites", error);
+    }
   };
 
   // Handle search button click
