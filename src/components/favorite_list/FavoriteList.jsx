@@ -50,22 +50,6 @@ function FavoriteList() {
         }
     };
 
-    // // Function to update Favorite in FavoriteList
-    // const updateFav = async (id) => {
-    //     try {
-    //         // Second argument of fetch request is optional object which specifies details of request
-    //         const res = await fetch(`/api/favorites/${id}`, {
-    //             method: "PUT",
-    //             headers: { "Content-Type" : "application/json"}, //Tell server we are sending JSON data
-    //             body: JSON.stringify({ name: editName.trim()}),  // Convert object to JSON string for sending data to server
-    //         });
-    //         if (res.ok) fetchFavorites();  // Refresh list
-    //         setEditId("");  // Reset id
-    //     } catch (error) {
-    //         console.error("Failed to update favorite:", error); 
-    //     }
-    // };
-
     // Function to delete favorite from FavoriteList
     const deleteFav = async (id) => {
         try {

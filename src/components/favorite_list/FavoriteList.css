@@ -8,6 +8,7 @@
     display: flex; /* Flexbox layout */
     flex-direction: column; /* Stack vertically */
     align-items: center; /* Center horizontally */
+    margin: 0; /* Remove any margin between items */
 }
 
 /* Remove default styling for ul */
