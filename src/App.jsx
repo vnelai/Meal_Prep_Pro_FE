@@ -1,6 +1,6 @@
 // Import modules
 import React from 'react';  // Import React
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Router and Routes
+import { Route, Routes } from 'react-router-dom'; // Import Router and Routes
 import './App.css' // Import app css file for styling
 import Nav from './components/nav/Nav';  // Import Nav component
 import Home from './pages/home/Home';  // Import Home page
