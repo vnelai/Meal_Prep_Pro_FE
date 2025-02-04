@@ -12,6 +12,8 @@ function Recipes() {
   const [recipeData, setRecipeData] = useState([]);
   // Track and set filtered recipes
   const [filteredRecipes, setFilteredRecipes] = useState([]); 
+  // Add recipe to favorites state
+  const [favorites, setFavorites] = useState([]);
 
   // Fetch all recipes on page load
   useEffect(() => {
@@ -34,7 +36,11 @@ function Recipes() {
     }     
   };
 
-  
+  // Handle adding recipe to favorites
+  const handleAddToFavorites = (recipe) => {
+    setFavorites([...favorites, recipe]); // Add recipe to favorites
+  };
+
   // Handle search button click
   const handleSearch = () => {
     if (!searchQuery.trim()) {
@@ -56,7 +62,7 @@ function Recipes() {
           setSearchQuery={setSearchQuery}
           handleSearch={handleSearch} 
         />  
-        <RecipeList recipes={filteredRecipes || []} />
+        <RecipeList recipes={filteredRecipes || []} addToFavorites={handleAddToFavorites}/>
     </div>
   )
 }

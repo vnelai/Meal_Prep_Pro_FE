@@ -1,0 +1,104 @@
+/* Styling for recipe list container */
+.recipe-list-div {
+    display: flex; /* Layout flexbox */
+    flex-wrap: wrap; /* Allow wrapping of items */
+    justify-content: space-between; /* Space between items */
+    gap: 20px;  /* Gap between cards */
+    padding: 30px; /* Space inside container */
+    background-color: #212f3c; /* Background color */
+    max-width: 100%; /* Max width */
+    margin: 0 auto; /* Space outside container */
+}
+
+/* Styling for individual recipe card */
+.recipe-card {
+    display: flex; /* Layout flexbox */
+    flex-direction: column;  /* Stack vertically */
+    justify-content: space-between;  /* Space between items */
+    width: 30%;  /* Set width */
+    border-radius: 10px; /* Rounding corners */
+    background-color: #264653; /* Background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+    overflow: hidden; /* Hide anything that doesn't fit */
+    transition: transform 0.3s ease; /* Add transition on hover */
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px); /* Raise effect on hover */
+}
+
+/* Styling for image inside recipe card */
+.recipe-card img {
+    width: 100%; /* Set width */
+    height: 200px; /* Set height */
+    object-fit: cover;  /* Crop image to fit the card */
+}
+
+/* Styling for card content */
+.card-content {
+    padding: 15px; /* Space inside container */
+    color: white; /* Font color */
+}
+
+/* Styling for recipe title */
+.card-content h3 {
+    font-size: 1.3rem; /* Font size */
+    margin-bottom: 10px; /* Space bottom */
+    margin-top:  10px; /* Space top */
+    color: #e9c46a; /* Text color */
+}
+
+/* Styling for button container */
+.btn-div {
+    display: flex; /* Layout flexbox */
+    justify-content: center; /* Center */
+    gap: 10px; /* Gap between items */
+}
+  
+/* Styling for buttons */
+button {
+    padding: 8px 30px; /* Spacing inside container */
+    margin-left: 10px; /* Space between buttons */
+    font-size: 14px; /* Adjust font size to fit better */
+    border-radius: 5px; /* Rounding corners */
+    font-size: 1rem; /* Font size */
+    cursor: pointer; /* Pointer */
+    border: none; /* Remove border */
+    transition: background-color 0.3s ease; /* Add transition on hover */
+    color: white;  /* Font color */
+    width: auto; /* Allow button width to adjust */
+    min-width: 100px; /* Minimum width to prevent shrinking */
+    text-align: center; /* Center text */
+    margin-bottom: 10px; /* Space bottom */
+    
+}
+
+.view-details-btn {
+    background-color: #2A9D8F;  /* Background color */ 
+    display: inline-flex; /* Flexbox for centering items */
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+    
+}
+
+.view-details-btn:hover {
+    background-color: #1F7669;  /* Background color */
+}
+
+.add-to-favorites-btn {
+    background-color: #f26c52; /* Background color */
+    display: inline-flex; /* Flexbox for centering items */
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+}
+
+.add-to-favorites-btn:hover {
+    background-color: #e0513e; /* Background color */
+}
+
+/* Styling when no recipes are available */
+.recipe-list-div p {
+    color: white; /* Font color */
+    font-size: 1.2rem; /* Font size */
+    text-align: center; /* Center text */
+}

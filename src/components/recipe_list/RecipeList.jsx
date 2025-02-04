@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"; // Import React
 import './RecipeList.css';  // Import css file
 
 //RecipeList component function
-function RecipeList({ recipes }) {
+function RecipeList({ recipes, addToFavorites }) {
 
   return (
     <div className="recipe-list-div">
@@ -15,15 +15,15 @@ function RecipeList({ recipes }) {
           <img src={recipe.image} alt={recipe.title} />
           <div className="card-content">
           <h3>{recipe.title}</h3>
-          <p>{recipe.instructions}</p>
-          <ul>
-              {recipe.extendedIngredients && recipe.extendedIngredients.map((ingredient, idx) => (
-                <li key={idx}>
-                  {ingredient.name} - {ingredient.amount} {ingredient.unit}
-                </li>
-              ))}
-          </ul>
-          <button>View Details</button>
+          <div className="btn-div">
+             {/* View Details Button */}
+            <button className="view-details-btn">View Details</button>
+            {/* Add to Favorites Button */}
+            <button 
+                className="add-to-favorites-btn" 
+                onClick={() => addToFavorites(recipe)}
+            >Add Favorite</button>
+          </div>
           </div>
         </div>
       ))
