@@ -23,8 +23,9 @@ function Recipes() {
         // I will be fetching from backend route so my API_KEY remains hidden
         const res = await fetch(`http://localhost:5001/api/recipes/search?query=${searchQuery}`);
         const data = await res.json();
-        setRecipeData(data);  //Save data to state
-        setFilteredRecipes(data); // Initially, filtered data is all data
+        setRecipeData(data.results || []);  //Save data to state
+        setFilteredRecipes(data.results || []); // Initially, filtered data is all data
+        console.log(data);
       } catch (error) {
         console.error("Failed to fetch recipes:", error);
         setRecipeData([]); // Clear data on error
@@ -32,13 +33,15 @@ function Recipes() {
       }     
     };
 
-    // Fetch api only if search has been initiated and searchQuery is not empty
-    if (searchPerformed && searchQuery ) { 
+    // Fetch immediately on mount
+    fetchApiRecipes();
+
+    // Fetch when user searches
+    if (searchQuery) { 
       fetchApiRecipes();
     }
 
-
-  }, []);   // Fetch once once it mounts
+  }, [searchQuery]);   // Runs whenever the dependencies change
 
   useEffect(() => {
     // Filter recipes when user searches
