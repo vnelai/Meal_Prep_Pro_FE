@@ -28,7 +28,6 @@ function FavoriteRecipe() {
     // useEffect to fetch from api
     useEffect(() => {
         fetchRecipe();
-        console.log(recipe);
     }, [id]);  // Once when it mounts
 
 
@@ -65,20 +64,16 @@ function FavoriteRecipe() {
 
     // Handle input field changes when editing
     const handleInputChange = (event, index = null) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target;  // Name comes from the name attribute of the input
 
         // Update the state
         setUpdatedRecipe(prev => {
-          const updatedIngredients = [...(prev.ingredients || [])]; // Copy existing ingredients
-
-          if (index !== null) {
-            // Update existing ingredient
-            updatedIngredients[index] = { ...updatedIngredients[index], [name]: value };
+          if (index !== null && prev.ingredients) {
+            const updatedIngredients = [...(prev.ingredients || [])]; // Copy existing ingredients
+            updatedIngredients[index] = { ...updatedIngredients[index], [name]: value };  // Update ingredient at index by merging existing properties with anything being updated 
             return { ...prev, ingredients: updatedIngredients }; // Update existing ingredient
           } else {
-            // Handle new ingredient input (before it's added to the array)
-            const newIngredient = { ...(prev.newIngredient || {}), [name]: value };
-            return { ...prev, newIngredient }; // Store in a temporary newIngredient object
+            return { ...prev, [name]: value};  // Update only the edited field
           }
       });
   };

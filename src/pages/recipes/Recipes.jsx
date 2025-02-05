@@ -28,7 +28,6 @@ function Recipes() {
       const data = await res.json();
       setRecipeData(data.results || []);  //Save data to state
       setFilteredRecipes(data.results || []); // Initially, filtered data is all data
-      // console.log(data);
     } catch (error) {
       console.error("Failed to fetch recipes:", error);
       setRecipeData([]); // Clear data on error
@@ -38,7 +37,6 @@ function Recipes() {
 
   // Handle adding recipe to favorites
   const handleAddToFavorites = async (recipe) => {
-    console.log(recipe)
     // Restructure the recipe object to match the backend schema
     const formattedRecipe = {
       recipeName: recipe.title, // title from the API res maps to recipeName

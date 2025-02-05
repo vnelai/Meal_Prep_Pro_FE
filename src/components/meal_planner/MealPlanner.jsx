@@ -25,7 +25,6 @@ function MealPlanner({ favorites }) {
         try {
           const res = await fetch("http://localhost:5001/api/favorites");
           const data = await res.json();
-          console.log(data); // Check the data being fetched
           setFetchedFavorites(data); // Set the fetched data
         } catch (error) {
           console.error("Failed to fetch favorite recipes:", error);
@@ -35,7 +34,6 @@ function MealPlanner({ favorites }) {
     }
   }, [favorites]);
 
-  console.log(fetchedFavorites); 
 
   // Handle meal selection for each day
   const handleMealSelect = (day, mealType, meal) => {
@@ -56,7 +54,6 @@ function MealPlanner({ favorites }) {
     // Prevent page reload, which is default for form submission
     event.preventDefault();
 
-    console.log("Submitting meal plan: ", meals); // Log the meals data
 
     try {
       // Send data to server with POST method
@@ -82,7 +79,6 @@ function MealPlanner({ favorites }) {
       try {
         const res = await fetch("http://localhost:5001/api/meal-planner");
         const data = await res.json();
-        console.log("Fetched meal plan:", data);
         // Data in backend is defined as "weekMealPlan"
         if (Array.isArray(data) && data.length > 0) {
           setMeals(data[data.length - 1].weekMealPlan); // Get the most recent meal plan
