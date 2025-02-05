@@ -17,7 +17,7 @@ function RecipeList({ recipes, addToFavorites }) {
           <h3>{recipe.title}</h3>
           <div className="btn-div">
              {/* View Details Button */}
-            <button className="view-details-btn">View Details</button>
+            {/* <button className="view-details-btn">View Details</button> */}
             {/* Add to Favorites Button */}
             <button 
                 className="add-to-favorites-btn" 

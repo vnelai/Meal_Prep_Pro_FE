@@ -24,6 +24,7 @@
     font-size: 16px; /* Font size */
     border: 1px solid #ccc; /* Define border */
     border-radius: 5px; /* Round corners */
+    max-width: 400px;
 }
 
 /* Add button styling same as shopping-list-div button */

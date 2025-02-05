@@ -24,7 +24,7 @@ function Recipes() {
   const fetchApiRecipes = async (query = '') => {
     try {
       // I will be fetching from backend route so my API_KEY remains hidden
-      // const res = await fetch(`http://localhost:5001/api/recipes/search?query=${searchQuery}`);
+      const res = await fetch(`http://localhost:5001/api/recipes/search?query=${searchQuery}`);
       const data = await res.json();
       setRecipeData(data.results || []);  //Save data to state
       setFilteredRecipes(data.results || []); // Initially, filtered data is all data
@@ -37,29 +37,52 @@ function Recipes() {
 
   // Handle adding recipe to favorites
   const handleAddToFavorites = async (recipe) => {
-    // Restructure the recipe object to match the backend schema
-    const formattedRecipe = {
-      recipeName: recipe.title, // title from the API res maps to recipeName
-      recipeImg: recipe.image,  
-      instructions: recipe.instructions, // instructions remain as is
-      ingredients: recipe.extendedIngredients.map(ingredient => ({
-        name: ingredient.name,
-        quantity: ingredient.amount,
-        unit: ingredient.unit,
-      })),
-    };
-    
+
     try {
+      // Extract instructions from analyzedInstructions
+      const instructions = recipe.analyzedInstructions && recipe.analyzedInstructions.length > 0 // If analyzed instructions exists and has a length greater than zero
+        ? recipe.analyzedInstructions // Then set the instructions = recipe.analyzedInstructions
+            // Grab the text from each step
+            .map(instruction => {
+              return instruction.steps
+              .map(step => step.step) // Access the 'step' field directly
+              .join('\n') // Join multiple steps' text into one string
+            })  
+            .join('\n') // Join multiple instructions together
+        : recipe.summary; // Fallback to summary if no instructions found
+        console.log("Steps in Analyzed Instructions:", recipe.analyzedInstructions.map(instruction => instruction.steps));
+
+      // Restructure the recipe object to match the backend schema
+      const formattedRecipe = {
+        recipeName: recipe.title, // title from the API res maps to recipeName
+        recipeImg: recipe.image,  
+        instructions: instructions,
+        ingredients: recipe.extendedIngredients?.map(ingredient => ({
+          name: ingredient.name,
+          quantity: ingredient.amount,
+          unit: ingredient.unit,
+        })) || [],  //Adding this just incase extended ingredients are undefined
+      };
+
+      console.log("Formatted Recipe:", formattedRecipe);
+
+
       // Save favorite to backend with a POST request
       const res = await fetch('http://localhost:5001/api/favorites', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(formattedRecipe),
       });
-
-      // Save new favorite recipe to Favorites state
-      const savedFavorite = await res.json();
-      setFavorites([...favorites, savedFavorite]);
+      
+      // Send messages to user
+      if (res.ok) {
+        alert('Recipe added to favorites');
+         // Save new favorite recipe to Favorites state
+        const savedFavorite = await res.json();
+        setFavorites([...favorites, savedFavorite]);
+      } else {
+        alert("Failed to add recipe to favorites");
+      }
     } catch (error) {
       console.error("Failed to add recipe to favorites", error);
     }
