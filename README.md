@@ -41,5 +41,10 @@ For the backend of this project, visit the [Meal Prep Pro Backend Repository]
 Contributing
 Feel free to fork the repository and submit pull requests. For any issues or feature requests, open an issue.
 
+
+Credits
+This project utilizes the Spoonacular API to fetch and display recipe data, making meal planning simple and convenient.
+
+
 License
 This project is licensed under the MIT License.
