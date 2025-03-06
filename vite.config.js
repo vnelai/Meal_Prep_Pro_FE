@@ -5,7 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: '0.0.0.0',  // Make sure it's listening on all network interfaces
-    port: 3000         // You can change the port if needed
+    host: '0.0.0.0',
+    port: 3000
+  },
+  preview: {
+    allowedHosts: ['meal-prep-pro-fe.onrender.com']
   }
 })
