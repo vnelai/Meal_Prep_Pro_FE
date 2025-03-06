@@ -18,7 +18,8 @@ function ShoppingListPage() {
     useEffect(() => {
         const fetchGroceryItems = async () => {
             try {
-                const res = await fetch("http://localhost:5001/api/shopping-list");
+                // Local url http://localhost:5001/api/shopping-list
+                const res = await fetch("https://meal-prep-pro-be.onrender.com/api/shopping-list");
                 const data = await res.json();
                 setGroceryItems(data);
             } catch (error) {
@@ -33,7 +34,8 @@ function ShoppingListPage() {
     const updateGroceryItem = async (id, updatedName) => {
         try {
             const updatedItem = { itemName: updatedName};
-            const res = await fetch(`http://localhost:5001/api/shopping-list/${id}`, {
+            // Local url `http://localhost:5001/api/shopping-list/${id}`
+            const res = await fetch(`https://meal-prep-pro-be.onrender.com/api/shopping-list/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -61,7 +63,8 @@ function ShoppingListPage() {
     // Function to delete an item
     const deleteGroceryItem = async (id) => {
         try {
-            await fetch(`http://localhost:5001/api/shopping-list/${id}`, {
+            // Local url `http://localhost:5001/api/shopping-list/${id}`
+            await fetch(`https://meal-prep-pro-be.onrender.com/api/shopping-list/${id}`, {
                 method: "DELETE",
             });
             // Update the shopping list state
@@ -81,7 +84,8 @@ function ShoppingListPage() {
         if (newGroceryItem.trim() === "") return;
 
         try {
-            const res = await fetch("http://localhost:5001/api/shopping-list", {
+            // Local url http://localhost:5001/api/shopping-list
+            const res = await fetch("https://meal-prep-pro-be.onrender.com/api/shopping-list", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

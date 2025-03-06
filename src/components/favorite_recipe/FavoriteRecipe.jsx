@@ -16,7 +16,8 @@ function FavoriteRecipe() {
     const fetchRecipe = async () => {
         try {
             // Fetching from our backend route favorites
-            const res = await fetch(`http://localhost:5001/api/favorites/${id}`);
+            // Local url `http://localhost:5001/api/favorites/${id}`
+            const res = await fetch(`https://meal-prep-pro-be.onrender.com/api/favorites/${id}`);
             const data = await res.json();
             setUpdatedRecipe(data); 
             setRecipe(data);
@@ -43,7 +44,8 @@ function FavoriteRecipe() {
           }
 
             // Send request to update recipe with PUT method then backend will handle the route with the method specified
-            const res = await fetch(`http://localhost:5001/api/favorites/${id}`, {
+            // Local url `http://localhost:5001/api/favorites/${id}`
+            const res = await fetch(`https://meal-prep-pro-be.onrender.com/api/favorites/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json', //Tell server we are sending JSON data

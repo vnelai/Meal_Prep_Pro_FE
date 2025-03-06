@@ -23,7 +23,8 @@ function MealPlanner({ favorites }) {
     if (!favorites || favorites.length === 0) {
       async function fetchFavorites() {
         try {
-          const res = await fetch("http://localhost:5001/api/favorites");
+          // Local url http://localhost:5001/api/favorites
+          const res = await fetch("https://meal-prep-pro-be.onrender.com/api/favorites");
           const data = await res.json();
           setFetchedFavorites(data); // Set the fetched data
         } catch (error) {
@@ -57,7 +58,8 @@ function MealPlanner({ favorites }) {
 
     try {
       // Send data to server with POST method
-      const res = await fetch("http://localhost:5001/api/meal-planner", {
+      // Local url http://localhost:5001/api/meal-planner"
+      const res = await fetch("https://meal-prep-pro-be.onrender.com/api/meal-planner", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(meals),
@@ -77,7 +79,8 @@ function MealPlanner({ favorites }) {
   useEffect(() => {
     async function fetchMealPlan() {
       try {
-        const res = await fetch("http://localhost:5001/api/meal-planner");
+        // Local url http://localhost:5001/api/meal-planner
+        const res = await fetch("https://meal-prep-pro-be.onrender.com/api/meal-planner");
         const data = await res.json();
         // Data in backend is defined as "weekMealPlan"
         if (Array.isArray(data) && data.length > 0) {

@@ -15,7 +15,8 @@ function FavoriteList() {
     const fetchFavorites = async () => {
         try {
             // We will be fetching from our backend route '/api/favorites' and formatting result in json
-            const res = await fetch ('http://localhost:5001/api/favorites');
+            // Local url http://localhost:5001/api/favorites
+            const res = await fetch ('https://meal-prep-pro-be.onrender.com/api/favorites');
             const data = await res.json();
             setFavorites(data);
         } catch (error) {
@@ -31,7 +32,8 @@ function FavoriteList() {
     // Function to add favorite to FavoriteList
     const addFav = async () => {
         try {
-            const res= await fetch('http://localhost:5001/api/favorites', {
+            // Local url http://localhost:5001/api/favorites
+            const res= await fetch('https://meal-prep-pro-be.onrender.com/api/favorites', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
@@ -48,7 +50,8 @@ function FavoriteList() {
     // Function to delete favorite from FavoriteList
     const deleteFav = async (id) => {
         try {
-            await fetch(`http://localhost:5001/api/favorites/${id}`, { method: "DELETE" });
+            // Local url `http://localhost:5001/api/favorites/${id}`
+            await fetch(`https://meal-prep-pro-be.onrender.com/api/favorites/${id}`, { method: "DELETE" });
             // Update the state to remove the deleted favorite
             // filter() creates a new array that excludes the deleted favorite.
             // (fav._id != id) target and keep only the favorite id that doesn't match deleted id

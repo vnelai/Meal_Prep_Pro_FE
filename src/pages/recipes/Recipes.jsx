@@ -69,7 +69,8 @@ function Recipes() {
 
 
       // Save favorite to backend with a POST request
-      const res = await fetch('http://localhost:5001/api/favorites', {
+      // Local backend 'http://localhost:5001/api/favorites'
+      const res = await fetch('https://meal-prep-pro-be.onrender.com/api/favorites', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(formattedRecipe),
