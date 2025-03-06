@@ -24,7 +24,8 @@ function Recipes() {
   const fetchApiRecipes = async (query = '') => {
     try {
       // I will be fetching from backend route so my API_KEY remains hidden
-      const res = await fetch(`http://localhost:5001/api/recipes/search?query=${searchQuery}`);
+      // const res = await fetch(`http://localhost:5001/api/recipes/search?query=${searchQuery}`);
+      const res = await fetch(`https://meal-prep-pro-be.onrender.com/api/recipes/search?query=${searchQuery}`);
       const data = await res.json();
       setRecipeData(data.results || []);  //Save data to state
       setFilteredRecipes(data.results || []); // Initially, filtered data is all data
