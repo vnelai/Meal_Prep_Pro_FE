@@ -1,0 +1,31 @@
+/* Footer.css */
+.footer {
+    background-color: #264656; /* Dark background color */
+    color: #E9C46A; /* Text color */
+    text-align: center;
+    padding: 10px; /* Increased padding for a bigger footer */
+    position: relative;
+    font-weight: bold; /* Make text bold */
+    font-size: 1.2rem;
+  }
+  
+  .footer p {
+    line-height: 1;
+  }
+  
+  .footer-links {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-links a {
+    color: #E9C46A;
+    text-decoration: none;
+    margin: 25px;
+    font-weight: bold; /* Make text bold */
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  

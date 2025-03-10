@@ -9,7 +9,7 @@
 
 /* Menu-left Home button styling */
 .menu-left .menu-link {
-  font-size: 24px; /* Sets font size */
+  font-size: 2rem; /* Sets font size */
   font-weight: bold; /* Make text bold */
   color: #e9c46a; /* Sets font color */
   text-decoration: none; /* Removes underline */
@@ -28,7 +28,7 @@
   color: #e9c46a; /* Sets color of text */
   font-weight: bold;
   text-decoration: none; /* Removes underline from link */
-  font-size: 18px; /* Sets font size */
+  font-size: 1.4rem; /* Sets font size */
   margin: 0 15px; /* Add space around container */
 }
 

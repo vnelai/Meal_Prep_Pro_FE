@@ -9,6 +9,7 @@ import Favorites from './pages/favorites/Favorites';  // Import Favorites page
 import MealPlannerPage from './pages/meal_planner/MealPlanner'; // Import MealPlaner page
 import ShoppingListPage from './pages/shopping_list/ShoppingList';  // Import Shopping List Page
 import FavoriteRecipe from './components/favorite_recipe/FavoriteRecipe';  // Import Favorite Recipe component
+import Footer from './components/footer/Footer';
 
 // App.jsx function 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         {/* Add Shopping List page route */}
         <Route path='/shopping-list' element={<ShoppingListPage/>}/>
       </Routes>
+      <Footer/>
     </>
   );
 };
